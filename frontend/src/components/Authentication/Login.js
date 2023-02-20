@@ -3,73 +3,72 @@ import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
 import { VStack } from "@chakra-ui/layout";
 import { useState } from "react";
-// import axios from "axios";
-// import { useToast } from "@chakra-ui/react";
-// import { useHistory } from "react-router-dom";
+import axios from "axios";
+import { useToast } from "@chakra-ui/react";
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
-  //const toast = useToast();
+  const toast = useToast();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [loading, setLoading] = useState(false);
 
-  //const history = useHistory();
+  const history = useHistory();
 
-  //   const submitHandler = async () => {
-  //     setLoading(true);
-  //     if (!email || !password) {
-  //       toast({
-  //         title: "Please Fill all the Feilds",
-  //         status: "warning",
-  //         duration: 5000,
-  //         isClosable: true,
-  //         position: "bottom",
-  //       });
-  //       setLoading(false);
-  //       return;
-  //     }
+    const submitHandler = async () => {
+      setLoading(true);
+      if (!email || !password) {
+        toast({
+          title: "Please Fill all the Feilds",
+          status: "warning",
+          duration: 5000,
+          isClosable: true,
+          position: "bottom",
+        });
+        setLoading(false);
+        return;
+      }
 
-  //     // console.log(email, password);
-  //     try {
-  //       const config = {
-  //         headers: {
-  //           "Content-type": "application/json",
-  //         },
-  //       };
+      // console.log(email, password);
+      try {
+        const config = {
+          headers: {
+            "Content-type": "application/json",
+          },
+        };
 
-  //       const { data } = await axios.post(
-  //         "/api/user/login",
-  //         { email, password },
-  //         config
-  //       );
+        const { data } = await axios.post(
+          "/api/user/login",
+          { email, password },
+          config
+        );
 
-  //       // console.log(JSON.stringify(data));
-  //       toast({
-  //         title: "Login Successful",
-  //         status: "success",
-  //         duration: 5000,
-  //         isClosable: true,
-  //         position: "bottom",
-  //       });
-  //       localStorage.setItem("userInfo", JSON.stringify(data));
-  //       setLoading(false);
-  //       history.push("/chats");
-  //     } catch (error) {
-  //       toast({
-  //         title: "Error Occured!",
-  //         description: error.response.data.message,
-  //         status: "error",
-  //         duration: 5000,
-  //         isClosable: true,
-  //         position: "bottom",
-  //       });
-  //       setLoading(false);
-  //     }
-  //   };
+        // console.log(JSON.stringify(data));
+        toast({
+          title: "Login Successful",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+          position: "bottom",
+        });
+        localStorage.setItem("userInfo", JSON.stringify(data));
+        setLoading(false);
+        history.push("/chats");
+      } catch (error) {
+        toast({
+          title: "Error Occured!",
+          description: error.response.data.message,
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+          position: "bottom",
+        });
+        setLoading(false);
+      }
+    };
 
-  const submitHandler = async () => {};
 
   return (
     <VStack spacing="10px">
@@ -112,8 +111,8 @@ const Login = () => {
         colorScheme="red"
         width="100%"
         onClick={() => {
-          setEmail("guest@example.com");
-          setPassword("123456");
+          setEmail("user1@test.com");
+          setPassword("12345678");
         }}
       >
         Get Guest User Credentials
