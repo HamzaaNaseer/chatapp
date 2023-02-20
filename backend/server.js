@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const userRoutes = require("./routes/userRoutes");
 const { notFound, errorHandler } = require("c:/users/invincible/desktop/chatpiyushyoutube/mern-chat-app/backend/middleware/errormiddleware");
-// const chatRoutes = require("./routes/chatRoutes");
+const chatRoutes = require("./routes/chatRoutes");
 // const messageRoutes = require("./routes/messageRoutes");
 
 dotenv.config();
@@ -17,7 +17,7 @@ app.use(express.json()); // to accept json data
 // });
 
 app.use("/api/user", userRoutes);
-// app.use("/api/chat", chatRoutes);
+app.use("/api/chat", chatRoutes);
 // app.use("/api/message", messageRoutes);
 
 // Error Handling middlewares
